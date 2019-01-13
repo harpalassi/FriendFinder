@@ -1,0 +1,22 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "a survey full-stack app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harpalassi/FriendFinder.git"
+  },
+  "author": "Harpal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harpalassi/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/harpalassi/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
