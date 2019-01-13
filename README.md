@@ -1,2 +1,2 @@
 # Friend Finder
-## A full-stack app
+A full-stack app
