@@ -8,7 +8,7 @@ let friends = [
     {
       name: "Jason",
       photo: "jason@example.com",
-      scores: ["1", "2", "1", "4", "1", "4", "1", "3", "1", "5", ]
+      scores: ["1", "2", "1", "4", "1", "4", "1", "3", "1", "5" ]
     }
   ];
   

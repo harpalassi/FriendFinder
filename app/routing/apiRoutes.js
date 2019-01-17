@@ -19,14 +19,19 @@ module.exports = function(app) {
     });
 
     app.post("/api/friends", function(req, res) {
-      // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-      // It will do this by sending out the value "true" have a table
       // req.body is available since we're using the body parsing middleware
-        friends.push(req.body);
+        friends.push(req.body); //push the results into our friends object 
+        newFriendScores = req.body.scores; //convert user's scores into an array. 
         res.json(true);
     
       }
     );
   
 }
-
+// With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the totalDifference.
+// Example:
+// User 1: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
+// User 2: [3, 2, 6, 4, 5, 1, 2, 5, 4, 1]
+// Total Difference: 2 + 1 + 2 = 5
+// Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.
+// The closest match will be the user with the least amount of difference.
