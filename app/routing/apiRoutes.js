@@ -21,8 +21,11 @@ module.exports = function(app) {
     app.post("/api/friends", function(req, res) {
       // req.body is available since we're using the body parsing middleware
         friends.push(req.body); //push the results into our friends object 
-        newFriendScores = req.body.scores; //convert user's scores into an array. 
-        res.json(true);
+        let newFriendScores = req.body.scores; //convert user's scores into an array. 
+        for (var i = 0; i < friends.length -1; i++) { //get arrays of scores from other users (subtract 1 to remove newest user)
+          console.log(friends[i].scores)
+        }
+        // res.json(true);
     
       }
     );
