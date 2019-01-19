@@ -8,24 +8,39 @@ let friends = require("../data/friends");
 
 
 module.exports = function(app) {
-    // API GET Requests
-    // Below code handles when users "visit" a page.
-    // In each of the below cases when a user visits a link
-    // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-    // ---------------------------------------------------------------------------
-  
+    // get request which returns a json of our current friends array at the api/friends route.
     app.get("/api/friends", function(req, res) {
       res.json(friends);
     });
 
+    //post request that takes data submitted on front end, computes and returns match.
     app.post("/api/friends", function(req, res) {
-      // req.body is available since we're using the body parsing middleware
-        friends.push(req.body); //push the results into our friends object 
+ 
+        let newFriend = req.body; //this is all of the user's data
         let newFriendScores = req.body.scores; //convert user's scores into an array. 
-        for (var i = 0; i < friends.length -1; i++) { //get arrays of scores from other users (subtract 1 to remove newest user)
-          console.log(friends[i].scores)
+        let totalDifference = 0; //initialize number var for difference between user scores and rest of friend scores
+
+        let friendMatch = { //create an object for the match so we can send it back to the AJAX request.  
+          name: "",
+          photo: "",
+          differenceAmt: 55 //amount that is greater than max difference between any scores
         }
-        // res.json(true);
+
+        for (var i = 0; i < friends.length; i++) { // looping through all friends objects
+          for (var j = 0; j < friends[i].scores[j]; j++) { //another loop to go through friends' scores array
+          //compares user score array to all other friend scores to calculate absolute difference (Math.abs).
+            totalDifference +=  Math.abs(parseInt(friends[i].scores[j] - parseInt(newFriendScores[j]))); 
+            
+            if (totalDifference <= friendMatch.differenceAmt) { //if the total difference is less or equal to the previous friendMatch then replace it with the new match
+              friendMatch.name = friends[i].name;
+              friendMatch.photo = friends[i].photo;
+              friendMatch.differenceAmt = totalDifference;
+            }
+          } 
+        }
+        //push the new friend into our friends object and then send it back to the front end to use with Ajax request.
+        friends.push(newFriend)
+        res.json(friendMatch);
     
       }
     );
