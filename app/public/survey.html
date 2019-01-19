@@ -25,8 +25,8 @@
                 <hr>
                 <h3><strong>Question 1</strong></h3>
                     <h5>Your mind is always buzzing with unexplored ideas and plans.</h5>
-                         <select id="q1" required>
-                            <option disabled selected value>Select an Option</option>
+                         <select id="q1" class="questions" required>
+                            <option value ="">Select an Option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -35,8 +35,8 @@
                          </select>
                     <h3 class="mt-3"><strong>Question 2</strong></h3>
                         <h5>Generally speaking, you rely more on your experience than your imagination.</h5>
-                         <select id="q2" required>
-                            <option disabled selected value>Select an Option</option>
+                         <select id="q2" class="questions" required>
+                            <option value ="">Select an Option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -45,8 +45,8 @@
                          </select>          
                     <h3 class="mt-3"><strong>Question 3</strong>
                     <h5>You find it easy to stay relaxed and focused even when there is some pressure.</h5>          
-                     <select id="q3" required>
-                        <option disabled selected value>Select an Option</option>
+                     <select id="q3"  class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -55,8 +55,8 @@
                      </select>               
                 <h3 class="mt-3"><strong>Question 4</strong>
                     <h5>You rarely do something just out of sheer curiosity.</h5>           
-                     <select id="q4" required>
-                        <option disabled selected value>Select an Option</option>
+                     <select id="q4" class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -65,8 +65,8 @@
                      </select>               
                 <h3 class="mt-3"><strong>Question 5</strong>
                     <h5>People can rarely upset you.</h5>          
-                     <select id="q5" required>
-                        <option disabled selected value>Select an Option</option>
+                     <select id="q5" class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -75,8 +75,8 @@
                      </select>              
                 <h3 class="mt-3"><strong>Question 6</strong>
                     <h5>It is often difficult for you to relate to other people’s feelings.</h5>
-                     <select id="q6" required>
-                        <option disabled selected value>Select an Option</option>
+                     <select id="q6"  class="questions"  required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -85,8 +85,8 @@
                      </select>
                 <h3 class="mt-3"><strong>Question 7</strong>
                     <h5>In a discussion, truth should be more important than people’s sensitivities.</h5>
-                    <select id="q7" required>
-                        <option disabled selected value>Select an Option</option>
+                    <select id="q7"  class="questions" required>
+                        <option value="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -95,8 +95,8 @@
                     </select>
                 <h3 class="mt-3"><strong>Question 8</strong>
                     <h5>You rarely get carried away by fantasies and ideas.</h5>
-                    <select id="q8" required>
-                        <option disabled selected value>Select an Option</option>
+                    <select id="q8"  class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -105,8 +105,8 @@
                     </select>
                 <h3 class="mt-3"><strong>Question 9</strong>
                     <h5>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h5>
-                    <select id="q9" required>
-                        <option disabled selected value>Select an Option</option>
+                    <select id="q9"  class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -115,8 +115,8 @@
                     </select>
                 <h3 class="mt-3"><strong>Question 10</strong>
                     <h5>You feel more energetic after spending time with a group of people.</h5>
-                    <select id="q10" required>
-                        <option disabled selected value>Select an Option</option>
+                    <select id="q10"  class="questions" required>
+                        <option value ="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -146,7 +146,9 @@
         <div class="modal-body" id="match-name">
         
         </div>
+        <div>
         <img id="match-pic"></img>
+        </div>
       </div>
     </div>
   </div>
@@ -158,14 +160,27 @@
   $("#submit").on("click", function(event) {
     event.preventDefault();
 
-    let name = $("#name").val().trim();
-    let photo = $("#photo-link").val().trim();
+//validation function to check if any inputs are empty. 
+    function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
 
-    if (name === "" || photo === "") {
-        alert ("Please enter a name and/or photo.");
-    }
+        $(".questions").each(function() {
 
-    // Here we grab the form elements
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+     
+    // if form is validated, grab all the inputs 
+    if (validateForm()) {
     var newFriend = {
       name: $("#name").val().trim(),
       photo: $("#photo-link").val().trim(),
@@ -182,26 +197,21 @@
     };
 
     console.log(newFriend);
-    
- 
-  
+
+  //sent a post request to the friends object and receive response(match) to push to modal.
   $.post("/api/friends", newFriend,
       function(data) {
-
-        console.log(data);
-        console.log(data.name);
-        console.log(data.photo)
+        console.log(data, data.name, data.photo);
         $("#match-name").text(data.name);
         $("#match-pic").attr("src", data.photo);
         $("#matchModal").modal('toggle');
       });
-
+    } else {
+        alert("Please answer all questions!")
+    }
 });
 
-
-
-
-    </script>
+</script>
 
 </body>
 </html>
