@@ -34,7 +34,10 @@ app.post("/api/friends", function(req, res) {
     totalDifference = 0;
 
   }
-  console.log(Math.min(...comparedScores));
+  let friendMatchIndex = (comparedScores.indexOf(Math.min(...comparedScores)));
+
+  friendMatch.name = friends[friendMatchIndex].name;
+  friendMatch.photo = friends[friendMatchIndex].photo;
   //push the new friend into our friends object and then send it back to the front end to use with Ajax request.
   friends.push(newFriend)
   res.json(friendMatch);
