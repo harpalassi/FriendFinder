@@ -19,8 +19,8 @@ app.post("/api/friends", function(req, res) {
   let newFriend = req.body; //this is all of the user's data
   let newFriendScores = req.body.scores; //convert user's scores into an array. 
   let totalDifference = 0; //initialize number var for difference between user scores and rest of friend scores
-  let comparedScores = [];
-  let friendMatch = { //create an object for the match so we can send it back to the AJAX request.  
+  let comparedScores = []; // array to store the difference amounts between users
+  let friendMatch = {  //an empty object for the match so we can send it back to the AJAX request.  
     name: "",
     photo: "",
   }
